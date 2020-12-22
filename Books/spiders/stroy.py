@@ -23,7 +23,7 @@ class StroySpider(scrapy.Spider):
         #   f.write(section)
         #   f.write(content)
 
-        # if next_section is not None:
-        #     yield scrapy.Request(next_section, callback=self.parse)
+        if next_section is not None:
+            yield scrapy.Request(next_section, callback=self.parse)
 
 
