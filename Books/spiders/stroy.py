@@ -15,7 +15,9 @@ class StroySpider(scrapy.Spider):
             return ''.join(list)
         item['section'] = response.css('div.content h1::text').get()
         item['text_info'] = response.css('div.textinfo span::text').getall()
-        item['content'] = text_to_string(response.css('div.showtxt::text').getall())
+        content_list = response.css('div.showtxt::text').getall()
+        content_list = content_list[0:-2]
+        item['content'] = text_to_string(content_list)
         next_section = response.css('div.page_chapter a::attr(href)').getall()[2]
 
         yield item
